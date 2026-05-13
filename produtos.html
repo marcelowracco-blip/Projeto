@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Lar & Conforto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-home"></i>
+                    <span>Lar & Conforto</span>
+                </div>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html" class="active">Produtos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="cart-icon-btn" id="cartToggle">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="cart-sidebar" id="cartSidebar">
+            <div class="cart-header">
+                <h3>Meu Carrinho</h3>
+                <button id="closeCartBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart-msg">Seu carrinho está vazio</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalPrice">R$ 0,00</span>
+                </div>
+                <button class="btn-checkout">Finalizar Compra</button>
+            </div>
+        </div>
+        <div class="cart-overlay" id="cartOverlay"></div>
+    </header>
+
+    <main>
+        <section class="products-page">
+            <div class="container">
+                <div class="products-header">
+                    <h1>Nossos Produtos</h1>
+                    <div class="filter-bar">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="cama">Cama</button>
+                        <button class="filter-btn" data-filter="mesa">Mesa</button>
+                        <button class="filter-btn" data-filter="banho">Banho</button>
+                    </div>
+                </div>
+                <div class="products-grid" id="allProductsGrid">
+                    <!-- Produtos serão inseridos via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-home"></i>
+                    <span>Lar & Conforto</span>
+                    <p>Transformando casas em lares acolhedores desde 2025</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="produtos.html">Produtos</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Atendimento</h4>
+                    <p><i class="fab fa-whatsapp"></i> (11) 98765-4321</p>
+                    <p><i class="far fa-envelope"></i> contato@lareconforto.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lar & Conforto - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarTodosProdutos();
+            initFiltros();
+        });
+    </script>
+</body>
+</html>

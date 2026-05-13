@@ -1,0 +1,8 @@
+ecommerce-donas/
+│
+├── index.html          (Página Inicial)
+├── produtos.html       (Página de Produtos)
+├── contato.html        (Página de Contato)
+├── style.css           (Estilos Globais)
+├── script.js           (JavaScript Compartilhado)
+└── README.txt          (Instruções)
