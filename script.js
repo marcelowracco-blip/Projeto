@@ -1,13 +1,13 @@
 // ===== BANCO DE DADOS DE PRODUTOS =====
 const produtos = [
-    { id: 1, nome: "Jogo de Lençóis Casal", categoria: "cama", preco: 129.90, imagem: "https://via.placeholder.com/300x220?text=Lençóis+Cama", destaque: true },
-    { id: 2, nome: "Edredom King Microfibra", categoria: "cama", preco: 189.90, imagem: "https://via.placeholder.com/300x220?text=Edredom", destaque: true },
-    { id: 3, nome: "Toalha de Banho Felpuda", categoria: "banho", preco: 49.90, imagem: "https://via.placeholder.com/300x220?text=Toalha+Banho", destaque: true },
-    { id: 4, nome: "Tapete Antiderrapante", categoria: "banho", preco: 79.90, imagem: "https://via.placeholder.com/300x220?text=Tapete", destaque: false },
-    { id: 5, nome: "Jogo Americano Floral", categoria: "mesa", preco: 59.90, imagem: "https://via.placeholder.com/300x220?text=Jogo+Mesa", destaque: true },
-    { id: 6, nome: "Toalha de Mesa Rústica", categoria: "mesa", preco: 69.90, imagem: "https://via.placeholder.com/300x220?text=Toalha+Mesa", destaque: false },
-    { id: 7, nome: "Roupão Felpudo", categoria: "banho", preco: 139.90, imagem: "https://via.placeholder.com/300x220?text=Roupão", destaque: true },
-    { id: 8, nome: "Almofada Decorativa", categoria: "cama", preco: 45.90, imagem: "https://via.placeholder.com/300x220?text=Almofada", destaque: false },
+    { id: 1, nome: "Colcha Fofinha de Casal", categoria: "cama", preco: 40.00, imagem: "imagem/colchafofinhacasal.jpeg", destaque: true },
+    { id: 2, nome: "Edredom King Microfibra", categoria: "cama", preco: 300.00, imagem: "imagem/colcha casal infantil.jpeg", destaque: true },
+    { id: 3, nome: "Toalha de Banho Felpuda", categoria: "banho", preco: 49.90, imagem: "imagem/toalha.jpeg", destaque: true },
+    { id: 4, nome: "Tapete", categoria: "casa", preco: 250.00, imagem: "imagem/tapete.jpeg", destaque: false },
+    { id: 5, nome: "Colcha Solteiro", categoria: "cama", preco: 300.00, imagem: "imagem/colcha solteiro.jpeg", destaque: true },
+    { id: 6, nome: "Colcha Solteiro Feminina", categoria: "cama", preco: 300.00, imagem: "imagem/colchasolteirofem.jpeg", destaque: false },
+    { id: 7, nome: "Colcha Solteiro Masculino", categoria: "cama", preco: 299.90, imagem: "imagem/colchasolteiromasc.jpeg", destaque: true },
+    { id: 8, nome: "Tapete Marrom", categoria: "casa", preco: 249.90, imagem: "imagem/tapetemarrom.jpeg", destaque: false },
 ];
 
 // Produtos em destaque para página inicial
