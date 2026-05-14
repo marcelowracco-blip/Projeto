@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Lojão do Lar Lírio dos Vales</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Lojão do Lar Lírio dos Vales</title> <!-- Título da página -->
+    <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo CSS -->
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -25,8 +25,8 @@
             </div>
 
             <!-- Menu Desktop -->
-            <nav class="nav-menu" id="navMenu">
-                <ul>
+            <nav class="nav-menu" id="navMenu"> <!-- Menu de navegação -->
+                <ul> <!-- Lista de itens do menu -->
                     <li><a href="index.html" class="active">Início</a></li>
                     <li><a href="produtos.html">Produtos</a></li>
                     <li><a href="contato.html">Contato</a></li>
@@ -34,49 +34,49 @@
             </nav>
 
             <!-- Ícones de ação (carrinho e menu hambúrguer) -->
-            <div class="header-actions">
-                <button class="cart-icon-btn" id="cartToggle">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cartCount">0</span>
+            <div class="header-actions"> <!-- Ações do cabeçalho -->
+                <button class="cart-icon-btn" id="cartToggle"> <!-- Botão do carrinho -->
+                    <i class="fas fa-shopping-cart"></i> <!-- Ícone do carrinho -->
+                    <span class="cart-count" id="cartCount">0</span> <!-- Contador de itens no carrinho -->
                 </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
+                <button class="mobile-menu-btn" id="mobileMenuBtn"> <!-- Botão do menu móvel -->
+                    <i class="fas fa-bars"></i> <!-- Ícone do menu hambúrguer -->
                 </button>
             </div>
         </div>
 
         <!-- Carrinho lateral (slide) -->
-        <div class="cart-sidebar" id="cartSidebar">
-            <div class="cart-header">
-                <h3>Meu Carrinho</h3>
-                <button id="closeCartBtn"><i class="fas fa-times"></i></button>
+        <div class="cart-sidebar" id="cartSidebar"> <!-- Sidebar do carrinho -->
+            <div class="cart-header"> <!-- Cabeçalho do carrinho -->
+                <h3>Meu Carrinho</h3> <!-- Título do carrinho -->
+                <button id="closeCartBtn"><i class="fas fa-times"></i></button> <!-- Botão para fechar o carrinho -->
             </div>
-            <div class="cart-items" id="cartItems">
-                <p class="empty-cart-msg">Seu carrinho está vazio</p>
+            <div class="cart-items" id="cartItems"> <!-- Área onde os itens do carrinho serão listados -->
+                <p class="empty-cart-msg">Seu carrinho está vazio</p> <!-- Mensagem exibida quando o carrinho está vazio -->
             </div>
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span id="cartTotalPrice">R$ 0,00</span>
+            <div class="cart-footer"> <!-- Rodapé do carrinho -->
+                <div class="cart-total"> <!-- Total do carrinho -->
+                    <span>Total:</span> <!-- Rótulo do total -->
+                    <span id="cartTotalPrice">R$ 0,00</span> <!-- Valor total do carrinho -->
                 </div>
-                <button class="btn-checkout">Finalizar Compra</button>
+                <button class="btn-checkout">Finalizar Compra</button> <!-- Botão para finalizar a compra -->
             </div>
         </div>
-        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-overlay" id="cartOverlay"></div> <!-- Overlay para o carrinho (fundo escurecido) -->
     </header>
 
-    <main>
+    <main> <!-- Conteúdo principal da página --> 
         <!-- BANNER PRINCIPAL CATEGORIAS -->
-        <section class="hero-banner">
-            <div class="container">
-                <h2>Transforme sua casa com aconchego e estilo</h2>
-                <div class="category-cards">
-                    <div class="category-card" data-cat="cama">
-                        <i class="fas fa-bed"></i>
-                        <h3>Cama</h3>
+        <section class="hero-banner"> <!-- Seção do banner principal -->
+            <div class="container"> <!-- Container para centralizar o conteúdo -->
+                <h2>Transforme sua casa com aconchego e estilo</h2> <!-- Título do banner -->
+                <div class="category-cards"> <!-- Cards de categorias -->
+                    <div class="category-card" data-cat="cama"> <!-- Card da categoria "Cama" -->
+                        <i class="fas fa-bed"></i> <!-- Ícone representando a categoria "Cama" -->
+                        <h3>Cama</h3> <!-- Título da categoria -->
                         <p>Lençóis, edredons e mais</p>
                     </div>
-                    <div class="category-card" data-cat="mesa">
+                    <div class="category-card" data-cat="mesa"> <!-- Card da categoria "Mesa" -->
                         <i class="fas fa-utensils"></i>
                         <h3>Mesa</h3>
                         <p>Jogos americanos, toalhas</p>
@@ -104,15 +104,17 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-home"></i>
-                    <span>Lojão do Lar Lírio dos Vales</span>
-                    <p>Transformando casas em lares acolhedores desde 2025</p>
+    <footer class="footer"> <!-- Rodapé da página -->
+        <div class="container"> <!-- Container para centralizar o conteúdo do rodapé -->
+            <div class="footer-content"> <!-- Conteúdo do rodapé -->
+                <div class="footer-logo"> <!-- Logo e descrição do rodapé -->
+                    <i class="fas fa-home"></i> <!-- Ícone representando o lar -->
+                    <span>Lojão do Lar Lírio dos Vales</span> <!-- Nome da loja -->
+                    <p>Transformando casas em lares acolhedores</p> <!-- Slogan da loja -->
+                </div>  
+                    <p>Transformando casas em lares acolhedores desde 2025</p> <!-- Slogan atualizado com o ano de início da loja -->
                 </div>
-                <div class="footer-links">
+                <div class="footer-links"> <!-- Links rápidos do rodapé -->
                     <h4>Links Rápidos</h4>
                     <ul>
                         <li><a href="index.html">Início</a></li>
@@ -120,19 +122,19 @@
                         <li><a href="contato.html">Contato</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
+                <div class="footer-contact"> <!-- Informações de contato do rodapé -->
                     <h4>Atendimento</h4>
                     <p><i class="fab fa-whatsapp"></i> (11) 98765-4321</p>
                     <p><i class="far fa-envelope"></i> contato@lareconforto.com</p>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom"> <!-- Rodapé inferior com direitos autorais -->
                 <p>&copy; 2025 Lojão do Lar Lírio dos Vales - Todos os direitos reservados</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- Link para o arquivo JavaScript -->
     <script>
         // Carregar produtos em destaque na página inicial
         document.addEventListener('DOMContentLoaded', () => {
