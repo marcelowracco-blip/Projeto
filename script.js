@@ -53,6 +53,9 @@ function renderizarCarrinho() {
     if (carrinho.length === 0) {
         cartContainer.innerHTML = '<p class="empty-cart-msg">Seu carrinho está vazio</p>';
         if(totalSpan) totalSpan.innerText = 'R$ 0,00';
+        // Esconder seção de pagamento quando carrinho vazio
+        const paymentSection = document.getElementById('paymentSection');
+        if(paymentSection) paymentSection.style.display = 'none';
         return;
     }
     
@@ -79,6 +82,15 @@ function renderizarCarrinho() {
     });
     cartContainer.innerHTML = html;
     if(totalSpan) totalSpan.innerText = `R$ ${total.toFixed(2)}`;
+    
+    // Mostrar seção de pagamento
+    const paymentSection = document.getElementById('paymentSection');
+    if(paymentSection && carrinho.length > 0) {
+        paymentSection.style.display = 'block';
+        // Atualizar total no resumo do pagamento
+        const paymentTotal = document.getElementById('paymentTotal');
+        if(paymentTotal) paymentTotal.innerText = `R$ ${total.toFixed(2)}`;
+    }
     
     // Eventos dos botões do carrinho
     document.querySelectorAll('.cart-qty-btn').forEach(btn => {
@@ -118,6 +130,133 @@ function fecharCartSidebar() {
     const overlay = document.getElementById('cartOverlay');
     if(sidebar) sidebar.classList.remove('open');
     if(overlay) overlay.classList.remove('active');
+}
+
+// ===== FUNÇÕES DE PAGAMENTO E FINALIZAÇÃO =====
+
+function getTotalCarrinho() {
+    return carrinho.reduce((total, item) => total + (item.preco * item.quantidade), 0);
+}
+
+// Alternar entre formas de pagamento
+function togglePaymentMethod(method) {
+    const creditCardForm = document.getElementById('creditCardForm');
+    const pixSection = document.getElementById('pixSection');
+    const methodBtns = document.querySelectorAll('.payment-method-btn');
+    
+    methodBtns.forEach(btn => btn.classList.remove('active'));
+    
+    if(method === 'credit') {
+        document.getElementById('btnCredit').classList.add('active');
+        if(creditCardForm) creditCardForm.style.display = 'block';
+        if(pixSection) pixSection.style.display = 'none';
+    } else if(method === 'pix') {
+        document.getElementById('btnPix').classList.add('active');
+        if(creditCardForm) creditCardForm.style.display = 'none';
+        if(pixSection) pixSection.style.display = 'block';
+        gerarCodigoPix();
+    }
+}
+
+// Gerar código Pix aleatório
+function gerarCodigoPix() {
+    const pixCode = document.getElementById('pixCode');
+    if(pixCode) {
+        const total = getTotalCarrinho();
+        const codigo = `pix.${Date.now()}.${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
+        pixCode.innerHTML = `
+            <div class="pix-code-box">
+                <p><strong>Código Pix:</strong></p>
+                <code style="font-size: 1.1rem; word-break: break-all; background: #f0f0f0; padding: 10px; display: block; border-radius: 8px;">${codigo}</code>
+                <p style="margin-top: 10px;"><strong>Valor:</strong> R$ ${total.toFixed(2)}</p>
+                <button onclick="copiarPix()" class="btn-copiar-pix">📋 Copiar código</button>
+            </div>
+        `;
+    }
+}
+
+function copiarPix() {
+    const codeElement = document.querySelector('#pixCode code');
+    if(codeElement) {
+        navigator.clipboard.writeText(codeElement.innerText);
+        alert('Código Pix copiado!');
+    }
+}
+
+// Validar cartão (simplificado)
+function validarCartao(numero, validade, cvv, nome) {
+    const numeroLimpo = numero.replace(/\s/g, '');
+    if(numeroLimpo.length !== 16 || !/^\d+$/.test(numeroLimpo)) {
+        return { valid: false, message: 'Número de cartão inválido (16 dígitos)' };
+    }
+    if(!/^\d{2}\/\d{2}$/.test(validade)) {
+        return { valid: false, message: 'Validade inválida (MM/AA)' };
+    }
+    if(!/^\d{3}$/.test(cvv)) {
+        return { valid: false, message: 'CVV inválido (3 dígitos)' };
+    }
+    if(nome.trim().length < 3) {
+        return { valid: false, message: 'Nome do titular inválido' };
+    }
+    return { valid: true, message: '' };
+}
+
+// Finalizar compra
+function finalizarCompra() {
+    if(carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+    }
+    
+    const selectedMethod = document.querySelector('.payment-method-btn.active')?.dataset.method;
+    
+    if(!selectedMethod) {
+        alert('Selecione uma forma de pagamento');
+        return;
+    }
+    
+    let pagamentoValido = false;
+    let mensagemSucesso = '';
+    
+    if(selectedMethod === 'credit') {
+        const numero = document.getElementById('cardNumber')?.value || '';
+        const validade = document.getElementById('cardValidity')?.value || '';
+        const cvv = document.getElementById('cardCvv')?.value || '';
+        const nome = document.getElementById('cardName')?.value || '';
+        
+        const validacao = validarCartao(numero, validade, cvv, nome);
+        if(!validacao.valid) {
+            alert(validacao.message);
+            return;
+        }
+        pagamentoValido = true;
+        mensagemSucesso = 'Pagamento com cartão de crédito processado com sucesso!';
+        
+    } else if(selectedMethod === 'pix') {
+        pagamentoValido = true;
+        mensagemSucesso = 'Pagamento via Pix confirmado!';
+    }
+    
+    if(pagamentoValido) {
+        const total = getTotalCarrinho();
+        // Limpar carrinho
+        carrinho = [];
+        salvarCarrinho();
+        
+        // Fechar sidebar
+        fecharCartSidebar();
+        
+        // Mostrar mensagem de sucesso
+        alert(`${mensagemSucesso}\nTotal: R$ ${total.toFixed(2)}\n\nPedido finalizado com sucesso! Obrigado pela compra!`);
+        
+        // Resetar formulários de pagamento
+        if(document.getElementById('creditCardForm')) {
+            document.getElementById('creditCardForm').reset();
+        }
+        
+        // Opcional: redirecionar para página de confirmação
+        // window.location.href = 'confirmacao.html';
+    }
 }
 
 // Função para exibir produtos em grid
@@ -224,6 +363,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('cartOverlay');
     if(overlay) overlay.addEventListener('click', fecharCartSidebar);
     
+    // Eventos de pagamento
+    const btnCredit = document.getElementById('btnCredit');
+    const btnPix = document.getElementById('btnPix');
+    if(btnCredit) btnCredit.addEventListener('click', () => togglePaymentMethod('credit'));
+    if(btnPix) btnPix.addEventListener('click', () => togglePaymentMethod('pix'));
+    
+    const btnFinalizar = document.getElementById('btnFinalizar');
+    if(btnFinalizar) btnFinalizar.addEventListener('click', finalizarCompra);
+    
     // Atualizar carrinho inicial
     atualizarContadorCarrinho();
     renderizarCarrinho();
@@ -253,3 +401,6 @@ window.exibirProdutosGrid = exibirProdutosGrid;
 window.carregarTodosProdutos = carregarTodosProdutos;
 window.initFiltros = initFiltros;
 window.initContactForm = initContactForm;
+window.togglePaymentMethod = togglePaymentMethod;
+window.finalizarCompra = finalizarCompra;
+window.copiarPix = copiarPix;

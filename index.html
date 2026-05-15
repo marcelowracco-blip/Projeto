@@ -49,7 +49,7 @@
         <div class="cart-sidebar" id="cartSidebar"> <!-- Sidebar do carrinho -->
             <div class="cart-header"> <!-- Cabeçalho do carrinho -->
                 <h3>Meu Carrinho</h3> <!-- Título do carrinho -->
-                <button id="closeCartBtn"><i class="fas fa-times"></i></button> <!-- Botão para fechar o carrinho -->
+                <button id="closeCartBtn"><i class="fas fa-times"></i></button> <!-- Botão para fechar o carrinho --> 
             </div>
             <div class="cart-items" id="cartItems"> <!-- Área onde os itens do carrinho serão listados -->
                 <p class="empty-cart-msg">Seu carrinho está vazio</p> <!-- Mensagem exibida quando o carrinho está vazio -->
@@ -61,6 +61,47 @@
                 </div>
                 <button class="btn-checkout">Finalizar Compra</button> <!-- Botão para finalizar a compra -->
             </div>
+            <!-- Dentro do elemento cart-sidebar, após os itens do carrinho -->
+<div id="paymentSection" style="display: none;">
+    <hr style="margin: 15px 0;">
+    <h3>Forma de Pagamento</h3>
+    
+    <div class="payment-methods">
+        <button id="btnCredit" class="payment-method-btn" data-method="credit">💳 Cartão de Crédito</button>
+        <button id="btnPix" class="payment-method-btn" data-method="pix">📱 Pix</button>
+    </div>
+    
+    <div id="creditCardForm" style="display: none;">
+        <div class="form-group">
+            <label>Número do Cartão</label>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Validade</label>
+                <input type="text" id="cardValidity" placeholder="MM/AA" maxlength="5">
+            </div>
+            <div class="form-group">
+                <label>CVV</label>
+                <input type="text" id="cardCvv" placeholder="123" maxlength="3">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Nome do Titular</label>
+            <input type="text" id="cardName" placeholder="Como está no cartão">
+        </div>
+    </div>
+    
+    <div id="pixSection" style="display: none;">
+        <div id="pixCode"></div>
+    </div>
+    
+    <div class="payment-total">
+        <strong>Total: </strong><span id="paymentTotal">R$ 0,00</span>
+    </div>
+    
+    <button id="btnFinalizar" class="btn-finalizar">✅ Finalizar Compra</button>
+</div>
         </div>
         <div class="cart-overlay" id="cartOverlay"></div> <!-- Overlay para o carrinho (fundo escurecido) -->
     </header>
