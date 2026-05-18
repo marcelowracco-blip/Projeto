@@ -207,6 +207,22 @@ function finalizarCompra() {
         alert('Seu carrinho está vazio!');
         return;
     }
+    function mostrarFormasPagamento() {
+    if(carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+    }
+    
+    const paymentSection = document.getElementById('paymentSection');
+    if(paymentSection) {
+        paymentSection.style.display = 'block';
+        const btnCheckout = document.querySelector('.btn-checkout');
+        if(btnCheckout) {
+            btnCheckout.style.display = 'none';
+        }
+        paymentSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
     
     const selectedMethod = document.querySelector('.payment-method-btn.active')?.dataset.method;
     
@@ -392,6 +408,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnFilter = document.querySelector(`.filter-btn[data-filter="${filterParam}"]`);
             if(btnFilter) btnFilter.click();
         }, 100);
+    }
+        // Adicionar evento ao botão Finalizar Compra original
+    const btnCheckout = document.querySelector('.btn-checkout');
+    if(btnCheckout) {
+        btnCheckout.addEventListener('click', mostrarFormasPagamento);
     }
 });
 
